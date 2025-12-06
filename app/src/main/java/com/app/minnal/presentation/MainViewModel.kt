@@ -4,20 +4,18 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.app.minnal.domain.model.BatteryInfo
 import com.app.minnal.domain.usecase.GetBatteryInfoUseCase
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 
 class MainViewModel(
-    private val getBatteryInfoUseCase: GetBatteryInfoUseCase
+    getBatteryInfoUseCase: GetBatteryInfoUseCase
 ) : ViewModel() {
 
-    private val _batteryInfo = MutableStateFlow<BatteryInfo?>(null)
-    val batteryInfo = _batteryInfo.asStateFlow()
-
-    fun getBatteryInfo() {
-        viewModelScope.launch {
-            _batteryInfo.value = getBatteryInfoUseCase()
-        }
-    }
+    val batteryInfo: StateFlow<BatteryInfo?> = getBatteryInfoUseCase()
+        .stateIn(
+            scope = viewModelScope,
+            started = SharingStarted.WhileSubscribed(5000),
+            initialValue = null
+        )
 }
