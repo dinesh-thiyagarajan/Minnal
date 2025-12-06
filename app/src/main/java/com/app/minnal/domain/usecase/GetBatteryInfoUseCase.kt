@@ -17,10 +17,19 @@ class GetBatteryInfoUseCase(private val context: Context) {
 
         val receiver = object : BroadcastReceiver() {
             override fun onReceive(context: Context?, intent: Intent?) {
-                val voltage = intent?.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1)?.div(1000.0)
-                val chargingSpeed = batteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CURRENT_NOW)
+                if (intent == null) return
 
-                if (voltage != null && voltage > 0) {
+                val voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1) / 1000.0
+                val status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
+                val isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
+
+                val chargingSpeed = if (isCharging) {
+                    batteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CURRENT_NOW)
+                } else {
+                    0L // Report 0 if not charging
+                }
+
+                if (voltage > 0) {
                     trySend(BatteryInfo(voltage = voltage, chargingSpeed = chargingSpeed))
                 } else {
                     trySend(null)
