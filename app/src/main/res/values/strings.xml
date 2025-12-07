@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Minnal</string>
+    <string name="voltage_format">Voltage: %.2fV</string>
+    <string name="charging_speed_format">Charging Speed: %d µA</string>
 </resources>

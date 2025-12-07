@@ -1,6 +1,5 @@
 package com.app.minnal
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -25,6 +24,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.app.minnal.domain.model.BatteryInfo
@@ -79,7 +79,7 @@ fun BatteryInfoDisplay(batteryInfo: BatteryInfo?) {
                             label = "voltageAnimation"
                         ) { targetVoltage ->
                             Text(
-                                text = "Voltage: ${String.format("%.2f", targetVoltage)}V",
+                                text = stringResource(R.string.voltage_format, targetVoltage),
                                 style = MaterialTheme.typography.headlineMedium,
                                 modifier = Modifier.padding(bottom = 8.dp)
                             )
@@ -94,7 +94,7 @@ fun BatteryInfoDisplay(batteryInfo: BatteryInfo?) {
                             label = "chargingSpeedAnimation"
                         ) { targetChargingSpeed ->
                             Text(
-                                text = "Charging Speed: $targetChargingSpeed µA",
+                                text = stringResource(R.string.charging_speed_format, targetChargingSpeed),
                                 style = MaterialTheme.typography.headlineMedium
                             )
                         }
