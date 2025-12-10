@@ -9,6 +9,7 @@ import com.app.minnal.domain.model.BatteryInfo
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.callbackFlow
+import kotlin.math.abs
 
 class GetBatteryInfoUseCase(private val context: Context) {
 
@@ -21,16 +22,18 @@ class GetBatteryInfoUseCase(private val context: Context) {
 
                 val voltage = intent.getIntExtra(BatteryManager.EXTRA_VOLTAGE, -1) / 1000.0
                 val status = intent.getIntExtra(BatteryManager.EXTRA_STATUS, -1)
-                val isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING
+                val isCharging = status == BatteryManager.BATTERY_STATUS_CHARGING ||
+                                 status == BatteryManager.BATTERY_STATUS_FULL
 
                 val chargingSpeed = if (isCharging) {
-                    batteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CURRENT_NOW)
+                    // Take absolute value to represent magnitude of current when charging
+                    abs(batteryManager.getLongProperty(BatteryManager.BATTERY_PROPERTY_CURRENT_NOW))
                 } else {
                     0L // Report 0 if not charging
                 }
 
                 if (voltage > 0) {
-                    trySend(BatteryInfo(voltage = voltage, chargingSpeed = chargingSpeed))
+                    trySend(BatteryInfo(voltage = voltage, chargingSpeed = chargingSpeed, isCharging = isCharging))
                 } else {
                     trySend(null)
                 }

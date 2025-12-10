@@ -66,8 +66,12 @@ fun BatteryInfoDisplay(batteryInfo: BatteryInfo?) {
         Crossfade(targetState = batteryInfo, label = "batteryInfoCrossfade") {
             when (it) {
                 null -> {
-                    Text(text = "Fetching battery info...", style = MaterialTheme.typography.headlineMedium)
+                    Text(
+                        text = "Fetching battery info...",
+                        style = MaterialTheme.typography.headlineMedium
+                    )
                 }
+
                 else -> {
                     Column(horizontalAlignment = Alignment.CenterHorizontally) {
                         AnimatedContent(
@@ -94,7 +98,10 @@ fun BatteryInfoDisplay(batteryInfo: BatteryInfo?) {
                             label = "chargingSpeedAnimation"
                         ) { targetChargingSpeed ->
                             Text(
-                                text = stringResource(R.string.charging_speed_format, targetChargingSpeed),
+                                text = stringResource(
+                                    R.string.charging_speed_format,
+                                    targetChargingSpeed
+                                ),
                                 style = MaterialTheme.typography.headlineMedium
                             )
                         }
@@ -109,6 +116,12 @@ fun BatteryInfoDisplay(batteryInfo: BatteryInfo?) {
 @Composable
 fun BatteryInfoDisplayPreview() {
     MinnalTheme {
-        BatteryInfoDisplay(batteryInfo = BatteryInfo(voltage = 4.2, chargingSpeed = 150000))
+        BatteryInfoDisplay(
+            batteryInfo = BatteryInfo(
+                voltage = 4.2,
+                chargingSpeed = 150000,
+                isCharging = true
+            )
+        )
     }
 }
