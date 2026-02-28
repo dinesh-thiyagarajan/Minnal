@@ -1,7 +1,71 @@
 <resources>
     <string name="app_name">Minnal</string>
-    <string name="voltage_format">Voltage: %.2fV</string>
-    <string name="charging_speed_format">Charging Speed: %d µA</string>
-    <string name="charging_status_charging">Charging</string>
-    <string name="charging_status_discharging">Discharging</string>
+
+    <!-- Torrent List -->
+    <string name="torrent_list_title">Minnal</string>
+    <string name="torrent_list_empty">No torrents added yet</string>
+    <string name="torrent_list_empty_subtitle">Tap + to add a torrent file or magnet link</string>
+
+    <!-- Add Torrent -->
+    <string name="add_torrent_title">Add Torrent</string>
+    <string name="tab_torrent_file">Torrent File</string>
+    <string name="tab_magnet_link">Magnet Link</string>
+    <string name="pick_torrent_file">Select Torrent File</string>
+    <string name="magnet_link_hint">Paste magnet link here</string>
+    <string name="save_path_label">Save to</string>
+    <string name="download_button">Download</string>
+    <string name="torrent_added">Torrent added successfully</string>
+
+    <!-- Torrent Status -->
+    <string name="status_downloading">Downloading</string>
+    <string name="status_seeding">Seeding</string>
+    <string name="status_paused">Paused</string>
+    <string name="status_stopped">Stopped</string>
+    <string name="status_checking">Checking</string>
+    <string name="status_queued">Queued</string>
+    <string name="status_error">Error</string>
+
+    <!-- Actions -->
+    <string name="action_pause">Pause</string>
+    <string name="action_resume">Resume</string>
+    <string name="action_remove">Remove</string>
+    <string name="action_remove_with_files">Remove with files</string>
+    <string name="action_pause_all">Pause All</string>
+    <string name="action_resume_all">Resume All</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_storage">Storage</string>
+    <string name="settings_download_path">Download Path</string>
+    <string name="settings_speed_limits">Speed Limits</string>
+    <string name="settings_max_download_speed">Max Download Speed</string>
+    <string name="settings_max_upload_speed">Max Upload Speed</string>
+    <string name="settings_unlimited">Unlimited</string>
+    <string name="settings_connections">Connections</string>
+    <string name="settings_max_connections">Max Connections</string>
+    <string name="settings_max_per_torrent">Max Per Torrent</string>
+    <string name="settings_behavior">Behavior</string>
+    <string name="settings_start_on_add">Start Downloads Automatically</string>
+    <string name="settings_seeding_enabled">Enable Seeding</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Downloads</string>
+    <string name="notification_channel_description">Torrent download progress</string>
+    <string name="notification_downloading">Downloading %d torrents</string>
+
+    <!-- Dialogs -->
+    <string name="dialog_remove_title">Remove Torrent</string>
+    <string name="dialog_remove_message">Are you sure you want to remove this torrent?</string>
+    <string name="dialog_remove_with_files_message">This will also delete downloaded files. Continue?</string>
+    <string name="dialog_cancel">Cancel</string>
+    <string name="dialog_confirm">Confirm</string>
+
+    <!-- Permissions -->
+    <string name="permission_notification_rationale">Notifications are needed to show download progress</string>
+    <string name="permission_storage_rationale">Storage access is needed to save downloaded files</string>
+
+    <!-- Misc -->
+    <string name="peers_format">%d / %d peers</string>
+    <string name="eta_format">ETA: %s</string>
+    <string name="speed_format">%s/s</string>
 </resources>

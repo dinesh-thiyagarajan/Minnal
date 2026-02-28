@@ -20,4 +20,13 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "Minnal"
+
 include(":app")
+include(":libtorrent")
+include(":core:common")
+include(":core:domain")
+include(":core:data")
+include(":core:ui")
+include(":feature:torrentlist")
+include(":feature:addtorrent")
+include(":feature:settings")
